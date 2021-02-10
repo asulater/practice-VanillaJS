@@ -1,19 +1,30 @@
 const btn = document.querySelector('#button');
+const dictionary = [];
 
 btn.addEventListener('click', () => {
-    const word = document.querySelector('#word').textContent;
-    const input = document.querySelector('#input').value;
-    const lastIndex = word.length - 1;
-    const w = word[lastIndex];
-    const i = input[0];
+    const wordTag = document.querySelector('#word');
+    const word = wordTag.textContent;
+    
+    const inputTag = document.querySelector('#input');
+    const input = inputTag.value;
+    
+    const errorTag = document.querySelector('#error');
 
-    if(w === i) {
-        document.querySelector('#word').textContent = input;
-        document.querySelector('#error').textContent = '';
-        document.querySelector('#input').value = '';
-        document.querySelector('#input').focus();
+    if(dictionary.includes(input)){
+       errorTag.textContent = '이미 사용한 단어입니다.'
+       inputTag.value = '';
+       inputTag.focus();
     } else {
-        document.querySelector('#error').textContent = '틀림';
-        document.querySelector('#input').focus();
+        if(word[word.length-1] === input[0]) {
+            wordTag.textContent = input;
+            errorTag.textContent = '';
+            inputTag.value = '';
+            inputTag.focus();
+            dictionary.push(input);
+        } else {
+            errorTag.textContent = '틀렸습니다 다시 입력하세요.';        
+            inputTag.value = '';
+            inputTag.focus();
+        }
     }
 });
