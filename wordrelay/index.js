@@ -6,7 +6,7 @@ btn.addEventListener('click', () => {
     const lastIndex = word.length - 1;
     const w = word[lastIndex];
     const i = input[0];
-
+    
     if(w === i) {
         document.querySelector('#word').textContent = input;
         document.querySelector('#error').textContent = '';
